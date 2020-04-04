@@ -1,0 +1,8 @@
+/* pages/user-login/user-login.wxss */
+.container {
+  padding-top: 50%;
+}
+
+.search {
+  margin-top: 100rpx;
+}

@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="login">
+    <button class="user" type="primary" bindtap="userLogin">用户登录</button>
+    <button class="admin" type="primary">管理员登录</button>
+  </view>
+</view>

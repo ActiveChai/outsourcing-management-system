@@ -1,0 +1,8 @@
+/**index.wxss**/
+.container {
+  padding-top: 50%;
+}
+
+.admin {
+  margin-top: 100rpx;
+}
