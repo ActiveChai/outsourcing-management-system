@@ -1,25 +1,25 @@
-// pages/user-login/user-login.js
-const app = getApp()
-
+// pages/publisher/publisher.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    hasUserInfo: false
+    list: [{
+      "text": "发布",
+      "iconPath": "/images/tabbar_icon_publish_default.png",
+      "selectedIconPath": "/images/tabbar_icon_publish_active.png"
+    },
+    {
+      "text": "我的",
+      "iconPath": "/images/tabbar_icon_me_default.png",
+      "selectedIconPath": "/images/tabbar_icon_me_active.png"
+    }]
   },
-  /**
-   * 事件处理函数
-   */
-  getUserInfo: function (e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+  tabChange(e) {
+    console.log('tab change', e)
   },
+
   /**
    * 生命周期函数--监听页面加载
    */

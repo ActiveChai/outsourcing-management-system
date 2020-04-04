@@ -1,0 +1,4 @@
+<!--pages/admin-page/admin-page.wxml-->
+<view class="page">
+  <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+</view>

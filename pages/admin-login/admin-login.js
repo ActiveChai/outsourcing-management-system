@@ -1,25 +1,13 @@
-// pages/user-login/user-login.js
-const app = getApp()
-
+// pages/admin-login/admin-login.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    hasUserInfo: false
+
   },
-  /**
-   * 事件处理函数
-   */
-  getUserInfo: function (e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

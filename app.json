@@ -1,8 +1,12 @@
 {
   "pages": [
+    "pages/userinfo/userinfo",
+    "pages/admin-page/admin-page",
+    "pages/publish/publish",
+    "pages/project/project",
     "pages/user-login/user-login",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/admin-login/admin-login"
   ],
   "window": {
     "backgroundTextStyle": "light",
