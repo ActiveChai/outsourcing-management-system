@@ -1,17 +1,17 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/admin-login/admin-login",
     "pages/userinfo/userinfo",
     "pages/admin-page/admin-page",
     "pages/publish/publish",
     "pages/project/project",
-    "pages/user-login/user-login",
-    "pages/index/index",
-    "pages/admin-login/admin-login"
+    "pages/user-login/user-login"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "项目外包管理系统",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

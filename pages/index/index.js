@@ -15,6 +15,11 @@ Page({
       url: '../user-login/user-login'
     })
   },
+  adminLogin: function () {
+    wx.navigateTo({
+      url: '../admin-login/admin-login'
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
