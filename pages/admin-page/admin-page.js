@@ -39,9 +39,6 @@ Page({
    */
   onShow: function () {
     wx.hideHomeButton()
-    wx.showToast({
-      title: '登录成功'
-    })
   },
 
   /**

@@ -1,14 +1,13 @@
-// pages/userinfo/userinfo.js
+// pages/publisher-info/publisher-info.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     list: [{
-      "text": "项目",
-      "iconPath": "/images/tabbar_icon_project_default.png",
-      "selectedIconPath": "/images/tabbar_icon_project_active.png"
+      "text": "发布",
+      "iconPath": "/images/tabbar_icon_publish_default.png",
+      "selectedIconPath": "/images/tabbar_icon_publish_active.png"
     },
     {
       "text": "我的",

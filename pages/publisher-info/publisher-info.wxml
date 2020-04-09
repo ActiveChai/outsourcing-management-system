@@ -1,0 +1,22 @@
+<!--pages/publisher-info/publisher-info.wxml-->
+<view class="page">
+  <view>
+    <mp-cells title="账号信息">
+      <mp-cell>
+        <view slot="title" style="position: relative;margin-right: 10px;">
+          <image src="../images/pic_160.png" style="width: 50px; height: 50px; display: block" />
+        </view>
+        <view>联系人名称</view>
+        <view style="font-size: 13px;color: #888888;">发布者</view>
+      </mp-cell>
+      <mp-cell link>
+        <view style="display: inline-block; vertical-align: middle">单行列表</view>
+      </mp-cell>
+      <mp-cell link>
+        <view style="display: inline-block; vertical-align: middle">单行列表</view>
+      </mp-cell>
+    </mp-cells>
+  </view>
+
+  <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" current="1" bindchange="tabChange"></mp-tabbar>
+</view>

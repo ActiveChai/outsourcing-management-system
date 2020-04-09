@@ -1,18 +1,28 @@
 {
   "pages": [
+    "pages/publisher-info/publisher-info",
     "pages/index/index",
-    "pages/admin-login/admin-login",
-    "pages/userinfo/userinfo",
-    "pages/admin-page/admin-page",
+    "pages/receiver-info/receiver-info",
     "pages/publish/publish",
-    "pages/project/project",
-    "pages/user-login/user-login"
+    "pages/admin-page/admin-page",
+    "pages/project/project"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "项目外包管理系统",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eee"
+  },
+  "usingComponents": {
+    "mp-toptips": "../components/toptips/toptips",
+    "mp-cells": "../components/cells/cells",
+    "mp-cell": "../components/cell/cell",
+    "mp-checkbox": "../components/checkbox/checkbox",
+    "mp-checkbox-group": "../components/checkbox-group/checkbox-group",
+    "mp-form": "../components/form/form",
+    "mp-tabbar": "/components/tabbar/tabbar",
+    "mp-badge": "../components/badge/badge"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

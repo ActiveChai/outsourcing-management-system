@@ -1,7 +1,0 @@
-<!--pages/user-login/user-login.wxml-->
-<view class="container">
-  <view class="choose">
-    <button class="publish" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">我要发布项目</button>
-    <button class="search" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">我要找项目</button>
-  </view>
-</view>
