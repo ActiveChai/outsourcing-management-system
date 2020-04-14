@@ -1,2 +1,2 @@
 /**app.wxss**/
-@import '/components/weui-wxss/dist/style/weui.wxss';
+@import './components/weui-wxss/dist/style/weui.wxss';

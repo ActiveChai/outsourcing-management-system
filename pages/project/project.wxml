@@ -1,4 +1,26 @@
 <!--pages/project/project.wxml-->
 <view class="page">
+  <view>
+    <mp-searchbar bindselectresult="selectResult" search="{{search}}" placeholder="输入关键词搜索项目"></mp-searchbar>
+  </view>
+
+  <view class="category">
+    <view wx:for="{{category}}" class="category-item" hover-class="category-hover">
+      <image src="{{item.src}}" class="img"></image>
+      <view>{{item.text}}</view>
+    </view>
+  </view>
+
+  <view>
+    <mp-cells title="最新项目">
+      <mp-cell link hover value="项目名称" footer="预算" ext-class="cell-height">
+      </mp-cell>
+      <mp-cell link hover value="无hover效果" footer="说明文字">
+      </mp-cell>
+      <mp-cell link hover value="无hover效果，带跳转URL" footer="说明文字">
+      </mp-cell>
+    </mp-cells>
+  </view>
+
   <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
 </view>

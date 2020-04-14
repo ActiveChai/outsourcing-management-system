@@ -1,0 +1,47 @@
+<!--pages/project-detail/project-detail.wxml-->
+<view class="contain">
+  <view class="project-title">
+    <view class="project-name">{{project.name}}</view>
+    <view class="project-due">
+      <view>竞标中：</view>
+      <view>{{project.due}}</view>
+    </view>
+  </view>
+
+  <view style="display: flex;color: #666666;padding: 0 25rpx;">
+    <view>发包方</view>
+    <view style="color: #2b9700;margin: 0 20rpx;">{{project.publisher}}</view>
+    <view>{{project.publishTime}}</view>
+  </view>
+
+  <view class="project-info">
+    <view class="info-item">
+      <view>{{project.category}}</view>
+      <view>项目类型</view>
+    </view>
+    <view class="info-item">
+      <view>{{project.budget}}</view>
+      <view>项目预算</view>
+    </view>
+    <view class="info-item">
+      <view>{{project.expect}}</view>
+      <view>预计开发时间</view>
+    </view>
+  </view>
+
+  <view style="padding: 0 25rpx;">
+    <view style="color: #333333;">项目内容描述</view>
+    <view class="project-content">{{project.content}}</view>
+  </view>
+
+  <view style="height: 20rpx; background-color: #EDEDED;"></view>
+
+  <view style="padding: 30rpx 25rpx 0;display: flex;align-items: center;">
+    <view style="color: #333333">竞标人数：</view>
+    <view style="font-size: 36rpx;color: #F78B62">{{project.bidderNum}}</view>
+  </view>
+
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="adminLogin">我要竞标</button>
+  </view>
+</view>

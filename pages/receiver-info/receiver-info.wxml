@@ -1,4 +1,25 @@
 <!--pages/receiver-info/receiver-info.wxml-->
 <view class="page">
-  <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+  <view>
+    <mp-cells title="账号信息">
+      <mp-cell>
+        <view slot="title" style="position: relative;margin-right: 10px;">
+          <image src="{{userInfo.avatarUrl}}" style="width: 50px; height: 50px; display: block" />
+        </view>
+        <view style="text-align: right;">{{userInfo.nickName}}</view>
+        <view style="text-align: right;font-size: 13px;color: #888888;">接包者</view>
+      </mp-cell>
+      <mp-cell link hover bindtap="modifyInfo">
+        <view style="display: inline-block; vertical-align: middle">修改信息</view>
+      </mp-cell>
+      <mp-cell link hover bindtap="myBid">
+        <view style="display: inline-block; vertical-align: middle">我的竞标</view>
+      </mp-cell>
+      <mp-cell link hover bindtap="switchIdentity">
+        <view style="display: inline-block; vertical-align: middle">切换身份</view>
+      </mp-cell>
+    </mp-cells>
+  </view>
+
+  <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" current="1" bindchange="tabChange"></mp-tabbar>
 </view>

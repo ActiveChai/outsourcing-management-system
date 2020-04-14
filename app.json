@@ -1,11 +1,15 @@
 {
   "pages": [
-    "pages/publisher-info/publisher-info",
+    "pages/category/category",
     "pages/index/index",
+    "pages/project-detail/project-detail",
+    "pages/project/project",
+    "pages/publisher-info/publisher-info",
     "pages/receiver-info/receiver-info",
     "pages/publish/publish",
     "pages/admin-page/admin-page",
-    "pages/project/project"
+    "pages/myPost/myPost",
+    "pages/myBid/myBid"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,7 +26,8 @@
     "mp-checkbox-group": "../components/checkbox-group/checkbox-group",
     "mp-form": "../components/form/form",
     "mp-tabbar": "/components/tabbar/tabbar",
-    "mp-badge": "../components/badge/badge"
+    "mp-badge": "../components/badge/badge",
+    "mp-searchbar": "../components/searchbar/searchbar"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -78,7 +78,18 @@ Page({
     })
   },
   tabChange(e) {
-    console.log('tab change', e)
+    const {
+      detail
+    } = e
+    if (detail.index === 0) {
+      wx.redirectTo({
+        url: '../publish/publish',
+      })
+    } else {
+      wx.redirectTo({
+        url: '../publisher-info/publisher-info',
+      })
+    }
   },
 
   /**

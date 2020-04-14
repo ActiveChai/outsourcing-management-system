@@ -1,0 +1,32 @@
+/* pages/category/category.wxss */
+
+.tab {
+  width: 100%;
+  padding: 25rpx 0;
+  white-space: nowrap;
+}
+
+.category-item {
+  display: inline-block;
+  padding: 10rpx 30rpx;
+  text-align: center;
+  border-radius: 12%;
+}
+
+.category-item--selected {
+  display: inline-block;
+  padding: 10rpx 30rpx;
+  margin: 0 20rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #2eb135;
+  border-radius: 12%;
+}
+
+.item-hover {
+  background-color: #eee;
+}
+
+.cell-height {
+  height: 130rpx;
+}
