@@ -25,7 +25,7 @@
     </view>
     <view class="info-item">
       <view>{{project.expect}}</view>
-      <view>预计开发时间</view>
+      <view>预期开发时间</view>
     </view>
   </view>
 

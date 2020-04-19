@@ -1,1 +1,5 @@
 /* pages/myPost/myPost.wxss */
+
+.cell-height {
+  height: 130rpx;
+}

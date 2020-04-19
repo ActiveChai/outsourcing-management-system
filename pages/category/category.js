@@ -31,7 +31,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    wx.request({
+      url: 'http://127.0.0.1:3000/string',
+      success(res) {
+        console.log(res.data)
+      },
+      fail() {
+        console.log(111)
+      },
+      complete() {
+        console.log(222)
+      }
+    })
   },
 
   /**

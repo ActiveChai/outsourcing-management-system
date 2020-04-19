@@ -1,2 +1,7 @@
 <!--pages/myPost/myPost.wxml-->
-<text>pages/myPost/myPost.wxml</text>
+<view>
+  <mp-cells title="我的发布" wx:for="{{projects}}">
+    <mp-cell link hover value="{{item.title}}" footer="{{item.budget}}" ext-class="cell-height">
+    </mp-cell>
+  </mp-cells>
+</view>

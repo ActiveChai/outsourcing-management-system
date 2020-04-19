@@ -1,4 +1,7 @@
 // pages/publisher/publisher.js
+//获取应用实例
+const app = getApp()
+
 Page({
   /**
    * 页面的初始数据
@@ -19,6 +22,18 @@ Page({
         required: true,
         message: '请输入描述文本'
       }
+    }, {
+      name: 'budget',
+      rules: {
+        required: true,
+        message: '请输入项目预算'
+      }
+    }, {
+      name: 'expect',
+      rules: {
+        required: true,
+        message: '请输入预期开发时间'
+      }
     }],
     categories: ["请选择", "网站开发", "桌面应用", "App", "UI设计", "数据采集与分析", "嵌入式与智能硬件", "微信开发", "管理系统", "其它分类项目"],
     categoryIndex: '0',
@@ -35,7 +50,7 @@ Page({
     ]
   },
   //事件处理函数
-  bindCategoryChange: function(e) {
+  bindCategoryChange(e) {
     this.setData({
       categoryIndex: e.detail.value
     })
@@ -48,12 +63,16 @@ Page({
       [`formData.${field}`]: e.detail.value
     })
   },
-  bindAgreeChange: function(e) {
+  bindAgreeChange(e) {
     this.setData({
       isAgree: !!e.detail.value.length
     });
   },
   publish() {
+    const publishTime = +new Date()
+    const {
+      publisher
+    } = app.globalData.userInfo
     this.selectComponent('#form').validate((valid, errors) => {
       if (!valid) {
         const firstError = Object.keys(errors)
@@ -71,8 +90,30 @@ Page({
           error: '请阅读并同意《相关条款》'
         })
       } else {
-        wx.showToast({
-          title: '发布成功'
+        // const publishTime = new Data()
+        // console.log(publishTime)
+        wx.request({
+          url: app.globalData.domain + '/publish',
+          method: 'POST',
+          data: {
+            ...this.data.formData,
+            category: this.data.categories[this.data.categoryIndex],
+            publishTime,
+            publisher
+          },
+          success: res => {
+            wx.showToast({
+              title: '发布成功'
+            })
+            wx.navigateTo({
+              url: '../myPost/myPost',
+            })
+          },
+          fail: res => {
+            wx.showToast({
+              title: '发布失败'
+            })
+          }
         })
       }
     })
@@ -96,7 +137,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.log(app.globalData.userInfo)
   },
 
   /**

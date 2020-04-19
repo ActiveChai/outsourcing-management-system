@@ -3,11 +3,11 @@
   <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
-    <view class="weui-cells__title">标题</view>
+    <view class="weui-cells__title">项目名称</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
         <view class="weui-cell__bd">
-          <input prop="title" bindinput="formInputChange" data-field="title" class="weui-input" placeholder="请输入项目标题" />
+          <input prop="title" bindinput="formInputChange" data-field="title" class="weui-input" placeholder="请输入项目名称" />
         </view>
       </view>
     </view>
@@ -19,6 +19,24 @@
           <picker bindchange="bindCategoryChange" value="{{categoryIndex}}" range="{{categories}}">
             <view class="weui-select">{{categories[categoryIndex]}}</view>
           </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">项目预算</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <input prop="budget" bindinput="formInputChange" data-field="budget" class="weui-input" placeholder="比如 “3K”、“待商议”等" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">预期开发时间</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <input prop="expect" bindinput="formInputChange" data-field="expect" class="weui-input" placeholder="比如 “8H”、“5天”等" />
         </view>
       </view>
     </view>

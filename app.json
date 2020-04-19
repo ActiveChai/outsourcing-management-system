@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/category/category",
     "pages/index/index",
+    "pages/myPost/myPost",
+    "pages/category/category",
     "pages/project-detail/project-detail",
     "pages/project/project",
     "pages/publisher-info/publisher-info",
     "pages/receiver-info/receiver-info",
     "pages/publish/publish",
     "pages/admin-page/admin-page",
-    "pages/myPost/myPost",
     "pages/myBid/myBid"
   ],
   "window": {
