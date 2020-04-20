@@ -7,17 +7,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-    projects: [{
-      title: '1',
-      budget: '2'
-    }]
+    projects: []
   },
 
+  viewProjectDetail(e) {
+    const {
+      projectId
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '../project-detail/project-detail?projectId=' + projectId,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    const thirdSession = wx.getStorageSync('thirdSession')
+    wx.request({
+      url: app.globalData.domain + '/myPost',
+      method: 'GET',
+      data: {
+        thirdSession
+      },
+      success: res => {
+        this.setData({
+          projects: res.data
+        })
+      },
+      fail: res => {
+        wx.showToast({
+          title: '获取失败'
+        })
+      }
+    })
   },
 
   /**

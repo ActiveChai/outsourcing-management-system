@@ -1,7 +1,7 @@
 <!--pages/project-detail/project-detail.wxml-->
 <view class="contain">
   <view class="project-title">
-    <view class="project-name">{{project.name}}</view>
+    <view class="project-name">{{project.title}}</view>
     <view class="project-due">
       <view>竞标中：</view>
       <view>{{project.due}}</view>

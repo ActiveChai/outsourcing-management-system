@@ -1,6 +1,7 @@
 // pages/publisher/publisher.js
 //获取应用实例
 const app = getApp()
+const dateTimePicker = require('../../utils/dateTimePicker.js')
 
 Page({
   /**
@@ -9,7 +10,12 @@ Page({
   data: {
     showTopTips: false,
     isAgree: false,
-    formData: {},
+    formData: null,
+    dateTimeMinute: null,
+    dateTimeMinuteArray: null,
+    dueString: '请选择',
+    startYear: 2020,
+    endYear: 2097,
     rules: [{
       name: 'title',
       rules: {
@@ -63,13 +69,28 @@ Page({
       [`formData.${field}`]: e.detail.value
     })
   },
+  changeDateTimeMinute(e) {
+    this.setData({
+      dueString: this.data.dateTimeMinuteArray[0][this.data.dateTimeMinute[0]] + this.data.dateTimeMinuteArray[1][this.data.dateTimeMinute[1]] + this.data.dateTimeMinuteArray[2][this.data.dateTimeMinute[2]] + this.data.dateTimeMinuteArray[3][this.data.dateTimeMinute[3]] + ':' + this.data.dateTimeMinuteArray[4][this.data.dateTimeMinute[4]]
+    });
+  },
+  changeDateTimeMinuteColumn(e) {
+    let arr = this.data.dateTimeMinute,
+      dateArr = this.data.dateTimeMinuteArray
+    arr[e.detail.column] = e.detail.value
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]])
+    this.setData({
+      dateTimeMinuteArray: dateArr,
+      dateTimeMinute: arr,
+      dueString: dateArr[0][arr[0]] + dateArr[1][arr[1]] + dateArr[2][arr[2]] + dateArr[3][arr[3]] + ':' + dateArr[4][arr[4]]
+    })
+  },
   bindAgreeChange(e) {
     this.setData({
       isAgree: !!e.detail.value.length
     });
   },
   publish() {
-    const publishTime = +new Date()
     const {
       publisher
     } = app.globalData.userInfo
@@ -90,8 +111,8 @@ Page({
           error: '请阅读并同意《相关条款》'
         })
       } else {
-        // const publishTime = new Data()
-        // console.log(publishTime)
+        const publishTime = +new Date()
+        const thirdSession = wx.getStorageSync('thirdSession')
         wx.request({
           url: app.globalData.domain + '/publish',
           method: 'POST',
@@ -99,7 +120,7 @@ Page({
             ...this.data.formData,
             category: this.data.categories[this.data.categoryIndex],
             publishTime,
-            publisher
+            thirdSession
           },
           success: res => {
             wx.showToast({
@@ -137,7 +158,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(app.globalData.userInfo)
+    // 获取完整的年月日时分，以及默认显示的数组
+    let obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear)
+    // 精确到分的处理，将数组的秒去掉
+    obj.dateTimeArray.pop()
+    obj.dateTime.pop()
+
+    this.setData({
+      dateTimeMinute: obj.dateTime,
+      dateTimeMinuteArray: obj.dateTimeArray
+    })
+    console.log(this.data.dateTimeMinute)
+    console.log(this.data.dateTimeMinuteArray)
   },
 
   /**

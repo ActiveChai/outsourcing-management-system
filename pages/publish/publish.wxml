@@ -52,6 +52,19 @@
       </view>
     </view>
 
+    <view class="weui-cells__title">竞标截止时间</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__bd">
+          <picker mode="multiSelector" value="{{dateTimeMinute}}" bindchange="changeDateTimeMinute" bindcolumnchange="changeDateTimeMinuteColumn" range="{{dateTimeMinuteArray}}">
+            <view class="weui-select">
+              {{dueString}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
     <checkbox-group bindchange="bindAgreeChange">
       <label class="weui-agree" for="weuiAgree">
         <view class="weui-agree__text">

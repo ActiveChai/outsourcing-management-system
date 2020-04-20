@@ -1,6 +1,8 @@
 // pages/project-detail/project-detail.js
-Page({
+//获取应用实例
+const app = getApp()
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -22,7 +24,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    const {
+      projectId
+    } = options
+    wx.request({
+      url: app.globalData.domain + '/getprojectDetail',
+      method: 'GET',
+      data: {
+        projectId
+      },
+      success: res => {
+        this.setData({
+          project: res.data
+        })
+      },
+      fail: res => {}
+    })
   },
 
   /**
