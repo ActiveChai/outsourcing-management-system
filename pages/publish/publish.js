@@ -1,7 +1,7 @@
 // pages/publisher/publisher.js
 //获取应用实例
 const app = getApp()
-const dateTimePicker = require('../../utils/dateTimePicker.js')
+const dateTimePicker = require('../../utils/date-time-picker.js')
 
 Page({
   /**
@@ -71,7 +71,7 @@ Page({
   },
   changeDateTimeMinute(e) {
     this.setData({
-      dueString: this.data.dateTimeMinuteArray[0][this.data.dateTimeMinute[0]] + this.data.dateTimeMinuteArray[1][this.data.dateTimeMinute[1]] + this.data.dateTimeMinuteArray[2][this.data.dateTimeMinute[2]] + this.data.dateTimeMinuteArray[3][this.data.dateTimeMinute[3]] + ':' + this.data.dateTimeMinuteArray[4][this.data.dateTimeMinute[4]]
+      dueString: this.data.dateTimeMinuteArray[0][this.data.dateTimeMinute[0]].replace('年', '-') + this.data.dateTimeMinuteArray[1][this.data.dateTimeMinute[1]].replace('月', '-') + this.data.dateTimeMinuteArray[2][this.data.dateTimeMinute[2]].replace('日', ' ') + this.data.dateTimeMinuteArray[3][this.data.dateTimeMinute[3]] + ':' + this.data.dateTimeMinuteArray[4][this.data.dateTimeMinute[4]]
     });
   },
   changeDateTimeMinuteColumn(e) {
@@ -82,7 +82,7 @@ Page({
     this.setData({
       dateTimeMinuteArray: dateArr,
       dateTimeMinute: arr,
-      dueString: dateArr[0][arr[0]] + dateArr[1][arr[1]] + dateArr[2][arr[2]] + dateArr[3][arr[3]] + ':' + dateArr[4][arr[4]]
+      dueString: dateArr[0][arr[0]].replace('年', '-') + dateArr[1][arr[1]].replace('月', '-') + dateArr[2][arr[2]].replace('日', ' ') + dateArr[3][arr[3]] + ':' + dateArr[4][arr[4]]
     })
   },
   bindAgreeChange(e) {
@@ -106,6 +106,10 @@ Page({
         this.setData({
           error: '请选择项目分类'
         })
+      } else if (this.data.dueString === '请选择') {
+        this.setData({
+          error: '请选择竞标截止时间'
+        })
       } else if (!this.data.isAgree) {
         this.setData({
           error: '请阅读并同意《相关条款》'
@@ -120,7 +124,8 @@ Page({
             ...this.data.formData,
             category: this.data.categories[this.data.categoryIndex],
             publishTime,
-            thirdSession
+            thirdSession,
+            due: +new Date(this.data.dueString)
           },
           success: res => {
             wx.showToast({
@@ -168,8 +173,6 @@ Page({
       dateTimeMinute: obj.dateTime,
       dateTimeMinuteArray: obj.dateTimeArray
     })
-    console.log(this.data.dateTimeMinute)
-    console.log(this.data.dateTimeMinuteArray)
   },
 
   /**

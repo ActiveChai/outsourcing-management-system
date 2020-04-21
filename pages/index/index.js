@@ -51,6 +51,7 @@ Page({
           })
         }
       } else {
+        wx.setStorageSync('accountIdentity', '2')
         wx.showToast({
           title: '登录成功'
         })
@@ -72,11 +73,29 @@ Page({
     if (!this.data.userInfo) {
       return
     }
+    const thirdSession = wx.getStorageSync('thirdSession')
+    wx.request({
+      url: app.globalData.domain + '/userLogin',
+      method: 'POST',
+      data: {
+        nickName: e.detail.userInfo.nickName,
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        thirdSession
+      },
+      success: res => {
+        console.log(res.data)
+      },
+      fail: res => {
+        console.log(res.errMsg)
+      }
+    })
     if (this.data.accountIndex === '0') {
+      wx.setStorageSync('accountIdentity', '0')
       wx.redirectTo({
         url: '../publish/publish'
       })
     } else {
+      wx.setStorageSync('accountIdentity', '1')
       wx.redirectTo({
         url: '../project/project'
       })

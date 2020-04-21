@@ -1,41 +1,77 @@
 // pages/project-detail/project-detail.js
 //获取应用实例
 const app = getApp()
+const formatTime = require('../../utils/format-time.js')
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    project: {
-      name: '智慧社区管理系统',
-      due: '2',
-      publisher: 'agfdhh',
-      publishTime: '4',
-      category: '管理系统',
-      budget: '6',
-      expect: '7',
-      content: '综合的社区管理系统，含有物业端及业主端，商户端且都支持网页版和移动版',
-      bidderNum: '8'
-    }
+    project: null,
+    formatPublishTime: '',
+    accountIdentity: '',
+    projectStatus: 0
   },
-
+  endBid() {
+    const {
+      projectId
+    } = this.data.project
+    wx.request({
+      url: app.globalData.domain + '/endBid',
+      method: 'POST',
+      data: {
+        projectId
+      },
+      success: res => {
+        this.setData({
+          projectStatus: 1
+        })
+      },
+      fail: res => {}
+    })
+  },
+  cancelPublish() {
+    const {
+      projectId
+    } = this.data.project
+    wx.request({
+      url: app.globalData.domain + '/cancelPublish',
+      method: 'POST',
+      data: {
+        projectId
+      },
+      success: res => {
+        console.log(res.data)
+      },
+      fail: res => {}
+    })
+    wx.navigateTo({
+      url: '../publish/publish',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    const accountIdentity = wx.getStorageSync('accountIdentity')
+    this.setData({
+      accountIdentity
+    })
     const {
       projectId
     } = options
     wx.request({
-      url: app.globalData.domain + '/getprojectDetail',
+      url: app.globalData.domain + '/getProjectDetail',
       method: 'GET',
       data: {
         projectId
       },
       success: res => {
         this.setData({
-          project: res.data
+          project: res.data,
+          projectStatus: res.data.projectStatus,
+          formatPublishTime: formatTime(res.data.publishTime)
         })
       },
       fail: res => {}

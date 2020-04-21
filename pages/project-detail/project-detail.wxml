@@ -3,15 +3,14 @@
   <view class="project-title">
     <view class="project-name">{{project.title}}</view>
     <view class="project-due">
-      <view>竞标中：</view>
-      <view>{{project.due}}</view>
+      <view>{{projectStatus ? '竞标结束' : project.due > project.publishTime ? '竞标中' : '竞标结束'}}</view>
     </view>
   </view>
 
   <view style="display: flex;color: #666666;padding: 0 25rpx;">
     <view>发包方</view>
     <view style="color: #2b9700;margin: 0 20rpx;">{{project.publisher}}</view>
-    <view>{{project.publishTime}}</view>
+    <view>{{formatPublishTime}}</view>
   </view>
 
   <view class="project-info">
@@ -31,7 +30,7 @@
 
   <view style="padding: 0 25rpx;">
     <view style="color: #333333;">项目内容描述</view>
-    <view class="project-content">{{project.content}}</view>
+    <view class="project-content">{{project.description}}</view>
   </view>
 
   <view style="height: 20rpx; background-color: #EDEDED;"></view>
@@ -41,7 +40,18 @@
     <view style="font-size: 36rpx;color: #F78B62">{{project.bidderNum}}</view>
   </view>
 
-  <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="adminLogin">我要竞标</button>
-  </view>
+  <block wx:if="{{projectStatus===0}}">
+    <view wx:if="{{accountIdentity==='0'}}" class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="endBid">结束竞标</button>
+      <button class="weui-btn" type="primary" bindtap="cancelPublish">取消发布</button>
+    </view>
+    <view wx:else class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="adminLogin">我要竞标</button>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="weui-btn-area">
+      <button class="weui-btn" disabled>竞标结束</button>
+    </view>
+  </block>
 </view>
