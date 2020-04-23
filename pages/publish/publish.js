@@ -91,9 +91,6 @@ Page({
     });
   },
   publish() {
-    const {
-      publisher
-    } = app.globalData.userInfo
     this.selectComponent('#form').validate((valid, errors) => {
       if (!valid) {
         const firstError = Object.keys(errors)
@@ -132,7 +129,7 @@ Page({
               title: '发布成功'
             })
             wx.navigateTo({
-              url: '../myPost/myPost',
+              url: '../my-post/my-post',
             })
           },
           fail: res => {

@@ -1,13 +1,12 @@
 <view class="weui-uploader {{extClass}}">
-    <view class="weui-uploader__hd">
+    <!-- <view class="weui-uploader__hd">
       <div class="weui-uploader__overview">
           <view class="weui-uploader__title">{{title}}</view>
           <view class="weui-uploader__info" wx:if="{{maxCount > 1}}">{{currentFiles.length}}/{{maxCount}}</view>
-
       </div>
         <view wx:if="{{tips}}" class="weui-uploader__tips">{{tips}}</view>
         <view wx:else><slot name="tips"></slot></view>
-    </view>
+    </view> -->
     <view class="weui-uploader__bd">
         <view class="weui-uploader__files">
             <block wx:for="{{currentFiles}}" wx:key="*this">

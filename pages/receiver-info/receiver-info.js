@@ -24,7 +24,7 @@ Page({
   modifyInfo() {},
   myBid() {
     wx.navigateTo({
-      url: '../myBid/myBid',
+      url: '../my-bid/my-bid',
     })
   },
   switchIdentity() {
@@ -51,9 +51,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function() {
+    const userInfo = wx.getStorageSync('userInfo')
     this.setData({
-      userInfo: app.globalData.userInfo,
-      hasUserInfo: true
+      userInfo
     })
   },
 

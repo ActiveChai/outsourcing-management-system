@@ -1,0 +1,37 @@
+<!--pages/modify-info/modify-info.wxml-->
+<view>
+
+  <view>
+    <view class="weui-cells__title">修改头像</view>
+    <mp-cells>
+      <mp-cell>
+        <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" upload="{{uplaodFile}}"></mp-uploader>
+      </mp-cell>
+    </mp-cells>
+  </view>
+
+  <mp-form id="form" models="{{formData}}">
+    <view class="weui-cells__title">修改昵称</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <input bindinput="formInputChange" data-field="nickName" class="weui-input" placeholder="请输入昵称" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">修改微信号</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <input bindinput="formInputChange" data-field="weChatCode" class="weui-input" placeholder="请输入微信号" />
+        </view>
+      </view>
+    </view>
+  </mp-form>
+
+
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="modifyInfo">确认修改</button>
+  </view>
+</view>

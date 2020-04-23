@@ -21,10 +21,14 @@ Page({
       }
     ]
   },
-  modifyInfo() {},
+  modifyInfo() {
+    wx.navigateTo({
+      url: '../modify-info/modify-info',
+    })
+  },
   myPost() {
     wx.navigateTo({
-      url: '../myPost/myPost',
+      url: '../my-post/my-post',
     })
   },
   switchIdentity() {
@@ -51,9 +55,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function() {
+    const userInfo = wx.getStorageSync('userInfo')
     this.setData({
-      userInfo: app.globalData.userInfo,
-      hasUserInfo: true
+      userInfo
     })
   },
 

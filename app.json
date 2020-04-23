@@ -1,15 +1,16 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/modify-info/modify-info",
     "pages/publish/publish",
-    "pages/myPost/myPost",
+    "pages/my-post/my-post",
     "pages/category/category",
     "pages/project-detail/project-detail",
     "pages/project/project",
     "pages/publisher-info/publisher-info",
     "pages/receiver-info/receiver-info",
     "pages/admin-page/admin-page",
-    "pages/myBid/myBid"
+    "pages/my-bid/my-bid"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,7 +28,8 @@
     "mp-form": "../components/form/form",
     "mp-tabbar": "/components/tabbar/tabbar",
     "mp-badge": "../components/badge/badge",
-    "mp-searchbar": "../components/searchbar/searchbar"
+    "mp-searchbar": "../components/searchbar/searchbar",
+    "mp-uploader": "../components/uploader/uploader"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

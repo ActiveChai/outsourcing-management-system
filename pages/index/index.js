@@ -65,7 +65,6 @@ Page({
 
   },
   getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
     this.setData({
       // 授权标记，确定是否跳转
       userInfo: e.detail.userInfo
@@ -83,7 +82,7 @@ Page({
         thirdSession
       },
       success: res => {
-        console.log(res.data)
+        wx.setStorageSync('userInfo', res.data)
       },
       fail: res => {
         console.log(res.errMsg)

@@ -100,7 +100,7 @@ Component({
     properties: {
         title: {
             type: String,
-            value: '图片上传'
+            value: ''
         },
         sizeType: {
             type: Array,
