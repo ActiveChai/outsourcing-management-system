@@ -3,14 +3,13 @@
     "pages/index/index",
     "pages/modify-info/modify-info",
     "pages/publish/publish",
-    "pages/my-post/my-post",
     "pages/category/category",
     "pages/project-detail/project-detail",
     "pages/project/project",
     "pages/publisher-info/publisher-info",
     "pages/receiver-info/receiver-info",
     "pages/admin-page/admin-page",
-    "pages/my-bid/my-bid"
+    "pages/my-projects/my-projects"
   ],
   "window": {
     "backgroundTextStyle": "light",

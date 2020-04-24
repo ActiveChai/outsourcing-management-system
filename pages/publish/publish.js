@@ -40,8 +40,14 @@ Page({
         required: true,
         message: '请输入预期开发时间'
       }
+    }, {
+      name: 'weChatCode',
+      rules: {
+        required: true,
+        message: '请输入微信号'
+      }
     }],
-    categories: ["请选择", "网站开发", "桌面应用", "App", "UI设计", "数据采集与分析", "嵌入式与智能硬件", "微信开发", "管理系统", "其它分类项目"],
+    categories: ["请选择", "微信开发", "UI设计", "网站开发", "APP开发", "桌面应用", "管理系统", "数据分析", "智能硬件", "其它"],
     categoryIndex: '0',
     list: [{
         "text": "发布",
@@ -129,7 +135,7 @@ Page({
               title: '发布成功'
             })
             wx.navigateTo({
-              url: '../my-post/my-post',
+              url: '../my-projects/my-projects',
             })
           },
           fail: res => {

@@ -1,19 +1,19 @@
 <!--pages/category/category.wxml-->
 <view>
-  <scroll-view scroll-x="true" class="tab">
-    <view wx:for="{{category}}" class="{{item.isSelect?'category-item--selected':'category-item'}}" hover-class="item-hover">
-      {{item.text}}
-    </view>
+  <scroll-view scroll-x="true" class="tab" scroll-left="{{scrollLeft}}">
+    <block wx:for="{{category}}">
+      <view class="{{item.isSelect?'category-item--selected':'category-item'}}" hover-class="item-hover" data-category-id="{{item.id}}" bindtap="switchTab">
+        {{item.text}}
+      </view>
+    </block>
   </scroll-view>
 
   <view>
     <mp-cells>
-      <mp-cell link hover value="项目名称" footer="预算" ext-class="cell-height">
-      </mp-cell>
-      <mp-cell link hover value="无hover效果" footer="说明文字">
-      </mp-cell>
-      <mp-cell link hover value="无hover效果，带跳转URL" footer="说明文字">
-      </mp-cell>
+      <block wx:for="{{projects}}">
+        <mp-cell link hover value="{{item.title}}" footer="{{item.budget}}" ext-class="cell-height" data-project-id="{{item.projectId}}" bindtap="viewProjectDetail">
+        </mp-cell>
+      </block>
     </mp-cells>
   </view>
 </view>

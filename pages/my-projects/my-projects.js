@@ -23,23 +23,47 @@ Page({
    */
   onLoad: function(options) {
     const thirdSession = wx.getStorageSync('thirdSession')
-    wx.request({
-      url: app.globalData.domain + '/myPost',
-      method: 'GET',
-      data: {
-        thirdSession
-      },
-      success: res => {
-        this.setData({
-          projects: res.data
-        })
-      },
-      fail: res => {
-        wx.showToast({
-          title: '获取失败'
-        })
-      }
-    })
+    const accountIdentity = wx.getStorageSync('accountIdentity')
+    if (accountIdentity === '0') {
+      wx.request({
+        url: app.globalData.domain + '/myPost',
+        method: 'GET',
+        data: {
+          thirdSession
+        },
+        success: res => {
+          this.setData({
+            projects: res.data,
+            accountIdentity
+          })
+        },
+        fail: res => {
+          wx.showToast({
+            title: '获取失败'
+          })
+        }
+      })
+    } else {
+      wx.request({
+        url: app.globalData.domain + '/myBid',
+        method: 'GET',
+        data: {
+          thirdSession
+        },
+        success: res => {
+          this.setData({
+            projects: res.data,
+            accountIdentity
+          })
+        },
+        fail: res => {
+          wx.showToast({
+            title: '获取失败',
+            icon: 'none'
+          })
+        }
+      })
+    }
   },
 
   /**

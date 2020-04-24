@@ -1,33 +1,45 @@
 // pages/project/project.js
+//获取应用实例
+const app = getApp()
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    projects: [],
     category: [{
       src: "/images/wechat.png",
-      text: "微信开发"
+      text: "微信开发",
+      id: 1
     }, {
       src: "/images/ui.png",
-      text: "UI设计"
+      text: "UI设计",
+      id: 2
     }, {
       src: "/images/web.png",
-      text: "网站开发"
+      text: "网站开发",
+      id: 3
     }, {
       src: "/images/app.png",
-      text: "APP开发"
+      text: "APP开发",
+      id: 4
     }, {
       src: "/images/desktop.png",
-      text: "桌面应用"
+      text: "桌面应用",
+      id: 5
     }, {
       src: "/images/system.png",
-      text: "管理系统"
+      text: "管理系统",
+      id: 6
     }, {
       src: "/images/data.png",
-      text: "数据分析"
+      text: "数据分析",
+      id: 7
     }, {
       src: "/images/hardware.png",
-      text: "智能硬件"
+      text: "智能硬件",
+      id: 8
     }],
     list: [{
       "text": "项目",
@@ -39,21 +51,44 @@ Page({
       "selectedIconPath": "/images/tabbar_icon_me_active.png"
     }]
   },
-  search: function(value) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve([{
-          text: '搜索结果',
-          value: 1
-        }, {
-          text: '搜索结果2',
-          value: 2
-        }])
-      }, 200)
+  toCategory(e) {
+    const {
+      categoryId
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '../category/category?categoryId=' + categoryId
     })
   },
-  selectResult: function(e) {
-    console.log('select result', e.detail)
+  viewProjectDetail(e) {
+    const {
+      projectId
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '../project-detail/project-detail?projectId=' + projectId
+    })
+  },
+  search(value) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: app.globalData.domain + '/searchProjects',
+        method: 'POST',
+        data: {
+          value
+        },
+        success: res => {
+          resolve(res.data)
+        },
+        fail: res => {}
+      })
+    })
+  },
+  selectResult(e) {
+    const {
+      projectId
+    } = e.detail.item
+    wx.navigateTo({
+      url: '../project-detail/project-detail?projectId=' + projectId
+    })
   },
   tabChange(e) {
     const {
@@ -61,11 +96,11 @@ Page({
     } = e
     if (detail.index === 0) {
       wx.redirectTo({
-        url: '../project/project',
+        url: '../project/project'
       })
     } else {
       wx.redirectTo({
-        url: '../receiver-info/receiver-info',
+        url: '../receiver-info/receiver-info'
       })
     }
   },
@@ -76,6 +111,21 @@ Page({
   onLoad: function(options) {
     this.setData({
       search: this.search.bind(this)
+    })
+    wx.request({
+      url: app.globalData.domain + '/getAllProjects',
+      method: 'GET',
+      success: res => {
+        this.setData({
+          projects: res.data
+        })
+      },
+      fail: res => {
+        wx.showToast({
+          title: '获取失败',
+          icon: 'none'
+        })
+      }
     })
   },
 

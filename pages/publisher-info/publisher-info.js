@@ -1,5 +1,4 @@
 // pages/publisher-info/publisher-info.js
-
 //获取应用实例
 const app = getApp()
 
@@ -23,17 +22,17 @@ Page({
   },
   modifyInfo() {
     wx.navigateTo({
-      url: '../modify-info/modify-info',
+      url: '../modify-info/modify-info'
     })
   },
-  myPost() {
+  myProjects() {
     wx.navigateTo({
-      url: '../my-post/my-post',
+      url: '../my-projects/my-projects'
     })
   },
   switchIdentity() {
     wx.reLaunch({
-      url: '../index/index',
+      url: '../index/index'
     })
   },
   tabChange(e) {

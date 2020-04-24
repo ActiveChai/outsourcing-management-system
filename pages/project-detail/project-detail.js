@@ -11,7 +11,10 @@ Page({
     project: null,
     formatPublishTime: '',
     accountIdentity: '',
-    projectStatus: 0
+    projectStatus: 0,
+    isBider: false,
+    isPublisher: false,
+    bidderNum: 0
   },
   endBid() {
     const {
@@ -50,11 +53,45 @@ Page({
       url: '../publish/publish',
     })
   },
+  bid() {
+    if (this.data.isPublisher) {
+      wx.showToast({
+        title: '发布者不能参与竞标',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    const {
+      projectId
+    } = this.data.project
+    const thirdSession = wx.getStorageSync('thirdSession')
+    wx.request({
+      url: app.globalData.domain + '/bid',
+      method: 'POST',
+      data: {
+        projectId,
+        thirdSession
+      },
+      success: res => {
+        wx.showToast({
+          title: '参与竞标成功',
+          duration: 2000
+        })
+        this.setData({
+          isBider: true,
+          bidderNum: this.data.bidderNum++
+        })
+      },
+      fail: res => {}
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     const accountIdentity = wx.getStorageSync('accountIdentity')
+    const thirdSession = wx.getStorageSync('thirdSession')
     this.setData({
       accountIdentity
     })
@@ -65,13 +102,17 @@ Page({
       url: app.globalData.domain + '/getProjectDetail',
       method: 'GET',
       data: {
-        projectId
+        projectId,
+        thirdSession
       },
       success: res => {
         this.setData({
           project: res.data,
           projectStatus: res.data.projectStatus,
-          formatPublishTime: formatTime(res.data.publishTime)
+          formatPublishTime: formatTime(res.data.publishTime),
+          isBider: res.data.people.isBider,
+          isPublisher: res.data.people.isPublisher,
+          bidderNum: res.data.bidderNum
         })
       },
       fail: res => {}

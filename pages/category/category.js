@@ -1,48 +1,96 @@
 // pages/category/category.js
-Page({
+//获取应用实例
+const app = getApp()
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
     category: [{
-      text: "全部",
-      isSelect: true
+      text: '全部',
+      id: 0
     }, {
-      text: "微信开发"
+      text: '微信开发',
+      id: 1
     }, {
-      text: "UI设计"
+      text: 'UI设计',
+      id: 2
     }, {
-      text: "网站开发"
+      text: '网站开发',
+      id: 3
     }, {
-      text: "APP开发"
+      text: 'APP开发',
+      id: 4
     }, {
-      text: "桌面应用"
+      text: '桌面应用',
+      id: 5
     }, {
-      text: "管理系统"
+      text: '管理系统',
+      id: 6
     }, {
-      text: "数据分析"
+      text: '数据分析',
+      id: 7
     }, {
-      text: "智能硬件"
-    }]
+      text: '智能硬件',
+      id: 8
+    }, {
+      text: '其它',
+      id: 9
+    }],
+    projects: [],
+    currentCategory: '全部',
+    scrollLeft: 0
   },
-
+  switchTab(e) {
+    const {
+      categoryId
+    } = e.currentTarget.dataset
+    this.getCategoryProjects(categoryId)
+  },
+  viewProjectDetail(e) {
+    const {
+      projectId
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '../project-detail/project-detail?projectId=' + projectId,
+    })
+  },
+  getCategoryProjects(categoryId) {
+    let {
+      category
+    } = this.data
+    category.forEach(item => {
+      item.isSelect = false
+    })
+    category[categoryId].isSelect = true
+    this.setData({
+      category,
+      currentCategory: category[categoryId].text,
+      scrollLeft: categoryId * 64
+    })
+    wx.request({
+      url: app.globalData.domain + '/getCategoryProjects',
+      method: 'GET',
+      data: {
+        category: this.data.currentCategory
+      },
+      success: res => {
+        this.setData({
+          projects: res.data
+        })
+      },
+      fail: res => {}
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.request({
-      url: 'http://127.0.0.1:3000/string',
-      success(res) {
-        console.log(res.data)
-      },
-      fail() {
-        console.log(111)
-      },
-      complete() {
-        console.log(222)
-      }
-    })
+    const {
+      categoryId
+    } = options
+    this.getCategoryProjects(categoryId)
   },
 
   /**

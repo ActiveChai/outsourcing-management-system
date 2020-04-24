@@ -21,15 +21,19 @@ Page({
       }
     ]
   },
-  modifyInfo() {},
-  myBid() {
+  modifyInfo() {
     wx.navigateTo({
-      url: '../my-bid/my-bid',
+      url: '../modify-info/modify-info'
+    })
+  },
+  myProjects() {
+    wx.navigateTo({
+      url: '../my-projects/my-projects'
     })
   },
   switchIdentity() {
     wx.reLaunch({
-      url: '../index/index',
+      url: '../index/index'
     })
   },
   tabChange(e) {
@@ -38,11 +42,11 @@ Page({
     } = e
     if (detail.index === 0) {
       wx.redirectTo({
-        url: '../project/project',
+        url: '../project/project'
       })
     } else {
       wx.redirectTo({
-        url: '../receiver-info/receiver-info',
+        url: '../receiver-info/receiver-info'
       })
     }
   },

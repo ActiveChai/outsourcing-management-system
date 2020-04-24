@@ -1,4 +1,4 @@
-<!--pages/publisher/publisher.wxml-->
+<!--pages/publish/publish.wxml-->
 <view>
   <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 
@@ -61,6 +61,15 @@
               {{dueString}}
             </view>
           </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">微信号</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <input prop="weChatCode" bindinput="formInputChange" data-field="weChatCode" class="weui-input" placeholder="请输入微信号" />
         </view>
       </view>
     </view>

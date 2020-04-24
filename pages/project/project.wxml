@@ -5,20 +5,20 @@
   </view>
 
   <view class="category">
-    <view wx:for="{{category}}" class="category-item" hover-class="category-hover">
-      <image src="{{item.src}}" class="img"></image>
-      <view>{{item.text}}</view>
-    </view>
+    <block wx:for="{{category}}">
+      <view class="category-item" hover-class="category-hover" data-category-id="{{item.id}}" bindtap="toCategory">
+        <image src="{{item.src}}" class="img"></image>
+        <view>{{item.text}}</view>
+      </view>
+    </block>
   </view>
 
   <view>
     <mp-cells title="最新项目">
-      <mp-cell link hover value="项目名称" footer="预算" ext-class="cell-height">
-      </mp-cell>
-      <mp-cell link hover value="无hover效果" footer="说明文字">
-      </mp-cell>
-      <mp-cell link hover value="无hover效果，带跳转URL" footer="说明文字">
-      </mp-cell>
+      <block wx:for="{{projects}}">
+        <mp-cell link hover value="{{item.title}}" footer="{{item.budget}}" ext-class="cell-height" data-project-id="{{item.projectId}}" bindtap="viewProjectDetail">
+        </mp-cell>
+      </block>
     </mp-cells>
   </view>
 

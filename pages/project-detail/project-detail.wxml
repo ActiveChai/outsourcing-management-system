@@ -46,7 +46,8 @@
       <button class="weui-btn" type="primary" bindtap="cancelPublish">取消发布</button>
     </view>
     <view wx:else class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="adminLogin">我要竞标</button>
+      <button wx:if="{{!isBider}}" class="weui-btn" type="primary" bindtap="bid">我要竞标</button>
+      <button wx:else class="weui-btn" disabled>已竞标</button>
     </view>
   </block>
   <block wx:else>
