@@ -1,0 +1,9 @@
+<!--components/project-list/project-list.wxml-->
+<view>
+  <mp-cells title="{{title}}">
+    <block wx:for="{{projects}}">
+      <mp-cell link hover value="{{item.title}}" footer="{{item.budget}}" ext-class="cell-height" data-project-id="{{item.projectId}}" bindtap="viewProjectDetail">
+      </mp-cell>
+    </block>
+  </mp-cells>
+</view>

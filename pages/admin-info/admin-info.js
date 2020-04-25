@@ -1,22 +1,10 @@
-// pages/admin-page/admin-page.js
-//获取应用实例
-const app = getApp()
-
+// pages/admin-info/admin-info.js
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    searchCategory: ["项目", "用户"],
-    searchCategoryIndex: '0',
-    rules: [{
-      name: 'value',
-      rules: {
-        required: true,
-        message: '请输入搜索关键词'
-      },
-    }],
-    formData: {},
     list: [{
         "text": "概况",
         "iconPath": "/images/tabbar_icon_overview_default.png",
@@ -29,34 +17,9 @@ Page({
       }
     ]
   },
-  //事件处理函数
-  bindSearchCategoryChange: function(e) {
-    this.setData({
-      searchCategoryIndex: e.detail.value
-    })
-  },
-  formInputChange(e) {
-    const {
-      field
-    } = e.currentTarget.dataset
-    this.setData({
-      [`formData.${field}`]: e.detail.value
-    })
-  },
-  search() {
-    this.selectComponent('#form').validate((valid, errors) => {
-      if (!valid) {
-        const firstError = Object.keys(errors)
-        if (firstError.length) {
-          this.setData({
-            error: errors[firstError[0]].message
-          })
-        }
-      } else {
-        wx.navigateTo({
-          url: '../admin-search/admin-search?searchCategoryIndex=' + this.data.searchCategoryIndex + '&value=' + this.data.formData.value
-        })
-      }
+  switchIdentity() {
+    wx.reLaunch({
+      url: '../index/index'
     })
   },
   tabChange(e) {
@@ -73,7 +36,6 @@ Page({
       })
     }
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -92,7 +54,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    wx.hideHomeButton()
+
   },
 
   /**

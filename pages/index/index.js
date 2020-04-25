@@ -7,13 +7,13 @@ Page({
     accounts: ["发包者", "接包者", "管理员"],
     accountIndex: '0',
     rules: [{
-      name: 'admin-account',
+      name: 'adminAccount',
       rules: {
         required: true,
         message: '请输入账号'
       },
     }, {
-      name: 'admin-password',
+      name: 'adminPassword',
       rules: {
         required: true,
         message: '请输入密码'
@@ -52,11 +52,26 @@ Page({
         }
       } else {
         wx.setStorageSync('accountIdentity', '2')
-        wx.showToast({
-          title: '登录成功'
-        })
-        wx.redirectTo({
-          url: '../admin-page/admin-page'
+        wx.request({
+          url: app.globalData.domain + '/adminLogin',
+          method: 'POST',
+          data: this.data.formData,
+          success: res => {
+            if (res.data.isSuccess) {
+              wx.showToast({
+                title: '登录成功'
+              })
+              wx.redirectTo({
+                url: '../admin-page/admin-page'
+              })
+            } else {
+              wx.showToast({
+                title: '账号或密码错误',
+                icon: 'none'
+              })
+            }
+          },
+          fail: res => {}
         })
       }
     })
@@ -84,9 +99,7 @@ Page({
       success: res => {
         wx.setStorageSync('userInfo', res.data)
       },
-      fail: res => {
-        console.log(res.errMsg)
-      }
+      fail: res => {}
     })
     if (this.data.accountIndex === '0') {
       wx.setStorageSync('accountIdentity', '0')

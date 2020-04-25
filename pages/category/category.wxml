@@ -8,12 +8,5 @@
     </block>
   </scroll-view>
 
-  <view>
-    <mp-cells>
-      <block wx:for="{{projects}}">
-        <mp-cell link hover value="{{item.title}}" footer="{{item.budget}}" ext-class="cell-height" data-project-id="{{item.projectId}}" bindtap="viewProjectDetail">
-        </mp-cell>
-      </block>
-    </mp-cells>
-  </view>
+  <mp-list projects="{{projects}}"></mp-list>
 </view>

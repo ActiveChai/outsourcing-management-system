@@ -1,4 +1,4 @@
-// pages/myPost/myPost.js
+// pages/admin-search/admin-search.js
 //获取应用实例
 const app = getApp()
 
@@ -7,52 +7,58 @@ Page({
    * 页面的初始数据
    */
   data: {
-    projects: []
+    searchCategoryIndex: '0',
+    value: '',
+    projects: [],
+    users: []
+  },
+  viewUserInfo(e) {
+    const {
+      userId
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '../user-info/user-info?userId=' + userId
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const thirdSession = wx.getStorageSync('thirdSession')
-    const accountIdentity = wx.getStorageSync('accountIdentity')
-    if (accountIdentity === '0') {
+    const {
+      searchCategoryIndex,
+      value
+    } = options
+    this.setData({
+      searchCategoryIndex,
+      value
+    })
+    if (searchCategoryIndex === '0') {
       wx.request({
-        url: app.globalData.domain + '/myPost',
-        method: 'GET',
+        url: app.globalData.domain + '/searchProjects',
+        method: 'POST',
         data: {
-          thirdSession
+          value
         },
         success: res => {
           this.setData({
-            projects: res.data,
-            accountIdentity
+            projects: res.data
           })
         },
-        fail: res => {
-          wx.showToast({
-            title: '获取失败'
-          })
-        }
+        fail: res => {}
       })
     } else {
       wx.request({
-        url: app.globalData.domain + '/myBid',
-        method: 'GET',
+        url: app.globalData.domain + '/searchUsers',
+        method: 'POST',
         data: {
-          thirdSession
+          value
         },
         success: res => {
           this.setData({
-            projects: res.data,
-            accountIdentity
+            users: res.data
           })
         },
-        fail: res => {
-          wx.showToast({
-            title: '获取失败',
-            icon: 'none'
-          })
-        }
+        fail: res => {}
       })
     }
   },

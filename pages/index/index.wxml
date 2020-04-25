@@ -18,11 +18,11 @@
   <view wx:if="{{accountIndex === '2'}}">
     <mp-form id="form" rules="{{rules}}" models="{{formData}}">
       <mp-cells title="管理员登录" footer="">
-        <mp-cell prop="admin-account" title="账号" ext-class="">
-          <input bindinput="formInputChange" data-field="admin-account" class="weui-input" placeholder="请输入管理员账号" />
+        <mp-cell prop="adminAccount" title="账号" ext-class="">
+          <input bindinput="formInputChange" data-field="adminAccount" class="weui-input" placeholder="请输入管理员账号" />
         </mp-cell>
-        <mp-cell prop="admin-password" title="密码" ext-class="">
-          <input type="password" bindinput="formInputChange" data-field="admin-password" class="weui-input" placeholder="请输入密码" />
+        <mp-cell prop="adminPassword" title="密码" ext-class="">
+          <input type="password" bindinput="formInputChange" data-field="adminPassword" class="weui-input" placeholder="请输入密码" />
         </mp-cell>
       </mp-cells>
     </mp-form>

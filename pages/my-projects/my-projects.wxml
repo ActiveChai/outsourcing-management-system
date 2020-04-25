@@ -1,9 +1,3 @@
 <!--pages/myPost/myPost.wxml-->
-<view>
-  <mp-cells title="{{accountIdentity === '0' ? '我的发布' : '我的竞标'}}">
-    <block wx:for="{{projects}}">
-      <mp-cell link hover value="{{item.title}}" footer="{{item.budget}}" ext-class="cell-height" data-project-id="{{item.projectId}}" bindtap="viewProjectDetail">
-      </mp-cell>
-    </block>
-  </mp-cells>
-</view>
+
+<mp-list title="{{accountIdentity === '0' ? '我的发布' : '我的竞标'}}" projects="{{projects}}"></mp-list>

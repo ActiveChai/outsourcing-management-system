@@ -13,14 +13,7 @@
     </block>
   </view>
 
-  <view>
-    <mp-cells title="最新项目">
-      <block wx:for="{{projects}}">
-        <mp-cell link hover value="{{item.title}}" footer="{{item.budget}}" ext-class="cell-height" data-project-id="{{item.projectId}}" bindtap="viewProjectDetail">
-        </mp-cell>
-      </block>
-    </mp-cells>
-  </view>
+  <mp-list title="最新项目" projects="{{projects}}"></mp-list>
 
   <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;z-index:1;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
 </view>

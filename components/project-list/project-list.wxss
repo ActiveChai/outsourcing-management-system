@@ -1,0 +1,5 @@
+/* components/project-list/project-list.wxss */
+
+.cell-height {
+  height: 130rpx;
+}

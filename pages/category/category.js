@@ -48,14 +48,6 @@ Page({
     } = e.currentTarget.dataset
     this.getCategoryProjects(categoryId)
   },
-  viewProjectDetail(e) {
-    const {
-      projectId
-    } = e.currentTarget.dataset
-    wx.navigateTo({
-      url: '../project-detail/project-detail?projectId=' + projectId,
-    })
-  },
   getCategoryProjects(categoryId) {
     let {
       category

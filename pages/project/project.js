@@ -59,14 +59,6 @@ Page({
       url: '../category/category?categoryId=' + categoryId
     })
   },
-  viewProjectDetail(e) {
-    const {
-      projectId
-    } = e.currentTarget.dataset
-    wx.navigateTo({
-      url: '../project-detail/project-detail?projectId=' + projectId
-    })
-  },
   search(value) {
     return new Promise((resolve, reject) => {
       wx.request({

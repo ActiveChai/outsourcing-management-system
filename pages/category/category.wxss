@@ -26,7 +26,3 @@
 .item-hover {
   background-color: #eee;
 }
-
-.cell-height {
-  height: 130rpx;
-}
