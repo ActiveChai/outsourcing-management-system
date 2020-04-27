@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/admin-page/admin-page",
     "pages/index/index",
+    "pages/admin-page/admin-page",
+    "pages/user-info/user-info",
     "pages/modify-info/modify-info",
     "pages/publish/publish",
     "pages/category/category",
@@ -11,8 +12,7 @@
     "pages/receiver-info/receiver-info",
     "pages/my-projects/my-projects",
     "pages/admin-info/admin-info",
-    "pages/admin-search/admin-search",
-    "pages/user-info/user-info"
+    "pages/admin-search/admin-search"
   ],
   "window": {
     "backgroundTextStyle": "light",

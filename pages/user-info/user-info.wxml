@@ -1,2 +1,26 @@
 <!--pages/user-info/user-info.wxml-->
-<text>pages/user-info/user-info.wxml</text>
+<view>
+  <block>
+    <view class="title" bindtap="bindShowPublish">
+      <view>发布的项目</view>
+      <image wx:if="{{showPublish}}" src="/images/down.png"></image>
+      <image wx:else src="/images/up.png"></image>
+    </view>
+    <mp-list wx:if="{{showPublish}}" projects="{{publishProjects}}"></mp-list>
+    <view wx:else class="border"></view>
+    <view wx:if="{{showPublish&&emptyPublish}}" style="text-align: center;height: 150rpx;line-height: 150rpx;">无</view>
+  </block>
+  <block>
+    <view class="title" bindtap="bindShowBid">
+      <view>参与竞标的项目</view>
+      <image wx:if="{{showBid}}" src="/images/down.png"></image>
+      <image wx:else src="/images/up.png"></image>
+    </view>
+    <mp-list wx:if="{{showBid}}" projects="{{bidProjects}}"></mp-list>
+    <view wx:else class="border"></view>
+    <view wx:if="{{showBid&&emptyBid}}" style="text-align: center;height: 150rpx;line-height: 150rpx;">无</view>
+  </block>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="deleteUser">删除用户</button>
+  </view>
+</view>

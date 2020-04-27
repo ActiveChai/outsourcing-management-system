@@ -45,12 +45,18 @@ Page({
         projectId
       },
       success: res => {
-        console.log(res.data)
+        wx.showToast({
+          title: '删除成功'
+        })
+        if (this.data.accountIdentity === '2') {
+          wx.navigateBack({})
+        } else {
+          wx.navigateTo({
+            url: '../publish/publish'
+          })
+        }
       },
       fail: res => {}
-    })
-    wx.navigateTo({
-      url: '../publish/publish',
     })
   },
   bid() {

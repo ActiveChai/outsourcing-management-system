@@ -40,19 +40,31 @@
     <view style="font-size: 36rpx;color: #F78B62">{{project.bidderNum}}</view>
   </view>
 
-  <block wx:if="{{projectStatus===0}}">
-    <view wx:if="{{accountIdentity==='0'}}" class="weui-btn-area">
+  <view wx:if="{{accountIdentity==='0'}}" class="weui-btn-area">
+    <block wx:if="{{projectStatus===0}}">
       <button class="weui-btn" type="primary" bindtap="endBid">结束竞标</button>
       <button class="weui-btn" type="primary" bindtap="cancelPublish">取消发布</button>
-    </view>
-    <view wx:else class="weui-btn-area">
+    </block>
+    <block wx:else>
+      <view class="weui-btn-area">
+        <button class="weui-btn" disabled>竞标结束</button>
+      </view>
+    </block>
+  </view>
+  <view wx:elif="{{accountIdentity==='1'}}" class="weui-btn-area">
+    <block wx:if="{{projectStatus===0}}">
       <button wx:if="{{!isBider}}" class="weui-btn" type="primary" bindtap="bid">我要竞标</button>
       <button wx:else class="weui-btn" disabled>已竞标</button>
-    </view>
-  </block>
+    </block>
+    <block wx:else>
+      <view class="weui-btn-area">
+        <button class="weui-btn" disabled>竞标结束</button>
+      </view>
+    </block>
+  </view>
   <block wx:else>
     <view class="weui-btn-area">
-      <button class="weui-btn" disabled>竞标结束</button>
+      <button class="weui-btn" type="primary" bindtap="cancelPublish">删除项目</button>
     </view>
   </block>
 </view>
