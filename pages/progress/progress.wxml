@@ -1,0 +1,26 @@
+<!--pages/progress/progress.wxml-->
+<view>
+  <block wx:for="{{progress}}">
+    <view class="progress">
+      ——
+      <view>时间</view>
+      <view>进度</view>
+      <view>人</view>
+    </view>
+  </block>
+  <view class="weui-btn-area">
+    <block wx:if="{{accountIdentity==='1'}}">
+      <button wx:if="{{projectStatus===3}}" class="weui-btn" type="primary" bindtap="viewProgress">开始开发</button>
+      <button wx:elif="{{projectStatus===4}}" class="weui-btn" type="primary" bindtap="viewProgress">开发完成</button>
+      <button wx:elif="{{projectStatus===5}}" class="weui-btn" disabled>开发已完成，待验收</button>
+    </block>
+    <block wx:elif="{{accountIdentity==='0'}}">
+      <button wx:if="{{projectStatus===5}}" class="weui-btn" type="primary" bindtap="viewProgress">验收通过</button>
+    </block>
+    <block wx:if="{{accountIdentity!=='2'}}">
+      <button wx:if="{{projectStatus===6}}" class="weui-btn" type="primary" bindtap="viewProgress">评价</button>
+      <button wx:elif="{{projectStatus===7}}" class="weui-btn" disabled>已评价</button>
+    </block>
+    <button wx:if="{{projectStatus===6}}" class="weui-btn" disabled>项目流程已结束</button>
+  </view>
+</view>

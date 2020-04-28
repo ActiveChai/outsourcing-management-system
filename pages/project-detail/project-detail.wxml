@@ -40,31 +40,32 @@
     <view style="font-size: 36rpx;color: #F78B62">{{project.bidderNum}}</view>
   </view>
 
-  <view wx:if="{{accountIdentity==='0'}}" class="weui-btn-area">
-    <block wx:if="{{projectStatus===0}}">
-      <button class="weui-btn" type="primary" bindtap="endBid">结束竞标</button>
-      <button class="weui-btn" type="primary" bindtap="cancelPublish">取消发布</button>
+  <view class="weui-btn-area">
+    <block wx:if="{{accountIdentity==='0'}}">
+      <block wx:if="{{projectStatus===0&&!isSelected}}">
+        <button class="weui-btn" type="primary" bindtap="endBid">结束竞标</button>
+        <button class="weui-btn" type="primary" bindtap="cancelPublish">取消发布</button>
+      </block>
+      <block wx:else>
+        <button class="weui-btn" disabled>竞标结束</button>
+      </block>
+      <button wx:if="{{!isSelected}}" class="weui-btn" type="primary" bindtap="toSelectBidder">确定竞标人</button>
+      <button wx:else class="weui-btn" disabled>已确定竞标人</button>
+    </block>
+    <block wx:elif="{{accountIdentity==='1'}}">
+      <block wx:if="{{projectStatus===0&&!isSelected}}">
+        <button wx:if="{{!isBider}}" class="weui-btn" type="primary" bindtap="bid">我要竞标</button>
+        <button wx:else class="weui-btn" disabled>已竞标</button>
+      </block>
+      <block wx:else>
+        <button class="weui-btn" disabled>竞标结束</button>
+      </block>
+      <button wx:if="{{isSuccessBid}}" class="weui-btn" disabled>竞标成功</button>
+      <button wx:else class="weui-btn" disabled>竞标失败</button>
     </block>
     <block wx:else>
-      <view class="weui-btn-area">
-        <button class="weui-btn" disabled>竞标结束</button>
-      </view>
-    </block>
-  </view>
-  <view wx:elif="{{accountIdentity==='1'}}" class="weui-btn-area">
-    <block wx:if="{{projectStatus===0}}">
-      <button wx:if="{{!isBider}}" class="weui-btn" type="primary" bindtap="bid">我要竞标</button>
-      <button wx:else class="weui-btn" disabled>已竞标</button>
-    </block>
-    <block wx:else>
-      <view class="weui-btn-area">
-        <button class="weui-btn" disabled>竞标结束</button>
-      </view>
-    </block>
-  </view>
-  <block wx:else>
-    <view class="weui-btn-area">
       <button class="weui-btn" type="primary" bindtap="cancelPublish">删除项目</button>
-    </view>
-  </block>
+    </block>
+    <button class="weui-btn" type="primary" bindtap="viewProgress">项目进度</button>
+  </view>
 </view>

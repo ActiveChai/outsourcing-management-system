@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/progress/progress",
     "pages/index/index",
     "pages/admin-page/admin-page",
     "pages/user-info/user-info",
@@ -12,7 +13,8 @@
     "pages/receiver-info/receiver-info",
     "pages/my-projects/my-projects",
     "pages/admin-info/admin-info",
-    "pages/admin-search/admin-search"
+    "pages/admin-search/admin-search",
+    "pages/bidders/bidders"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -32,7 +34,8 @@
     "mp-badge": "../components/badge/badge",
     "mp-searchbar": "../components/searchbar/searchbar",
     "mp-uploader": "../components/uploader/uploader",
-    "mp-list": "../components/project-list/project-list"
+    "mp-list": "../components/project-list/project-list",
+    "mp-dialog": "../components/dialog/dialog"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -1,0 +1,17 @@
+<!--pages/bidders/bidders.wxml-->
+<view>
+  <mp-cells title="竞标人">
+    <block wx:for="{{bidders}}">
+      <mp-cell hover bindtap="selectBidder" data-user-id="{{item.userId}}">
+        <view slot="title" style="position: relative;margin-right: 10px;">
+          <image src="{{item.avatarUrl}}" style="width: 50px; height: 50px; display: block" />
+        </view>
+        <view style="text-align: right;">{{item.nickName}}</view>
+        <view style="text-align: right;font-size: 13px;color: #888888;">{{userInfo.weChatCode ? userInfo.weChatCode : ''}}</view>
+      </mp-cell>
+    </block>
+  </mp-cells>
+  <mp-dialog title="竞标人" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+    <view>您确定这是最终竞标人吗？</view>
+  </mp-dialog>
+</view>

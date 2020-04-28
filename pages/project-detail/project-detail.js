@@ -14,7 +14,9 @@ Page({
     projectStatus: 0,
     isBider: false,
     isPublisher: false,
-    bidderNum: 0
+    bidderNum: 0,
+    isSelected: false,
+    isSuccessBid: false
   },
   endBid() {
     const {
@@ -92,6 +94,22 @@ Page({
       fail: res => {}
     })
   },
+  toSelectBidder() {
+    const {
+      projectId
+    } = this.data.project
+    wx.navigateTo({
+      url: '../bidders/bidders?projectId=' + projectId
+    })
+  },
+  viewProgress() {
+    const {
+      projectId
+    } = this.data.project
+    wx.navigateTo({
+      url: '../progress/progress?projectId=' + projectId
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -118,7 +136,8 @@ Page({
           formatPublishTime: formatTime(res.data.publishTime),
           isBider: res.data.people.isBider,
           isPublisher: res.data.people.isPublisher,
-          bidderNum: res.data.bidderNum
+          bidderNum: res.data.bidderNum,
+          isSelected: res.data.isSelected
         })
       },
       fail: res => {}
