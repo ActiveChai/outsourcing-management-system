@@ -1,1 +1,8 @@
 /* pages/progress/progress.wxss */
+
+.progress {
+  border-top: 2rpx solid #eee;
+  width: 100%;
+  padding: 30rpx;
+  word-break: break-all;
+}

@@ -71,7 +71,12 @@ Page({
               })
             }
           },
-          fail: res => {}
+          fail: res => {
+            wx.showToast({
+              title: '账号或密码错误',
+              icon: 'none'
+            })
+          }
         })
       }
     })
@@ -99,7 +104,12 @@ Page({
       success: res => {
         wx.setStorageSync('userInfo', res.data)
       },
-      fail: res => {}
+      fail: res => {
+        wx.showToast({
+          title: '登录失败',
+          icon: 'none'
+        })
+      }
     })
     if (this.data.accountIndex === '0') {
       wx.setStorageSync('accountIdentity', '0')

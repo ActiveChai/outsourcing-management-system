@@ -30,7 +30,7 @@
 
   <view style="padding: 0 25rpx;">
     <view style="color: #333333;">项目内容描述</view>
-    <view class="project-content">{{project.description}}</view>
+    <text decode="true" class="project-content">{{project.description}}</text>
   </view>
 
   <view style="height: 20rpx; background-color: #EDEDED;"></view>
@@ -42,30 +42,41 @@
 
   <view class="weui-btn-area">
     <block wx:if="{{accountIdentity==='0'}}">
-      <block wx:if="{{projectStatus===0&&!isSelected}}">
+      <block wx:if="{{projectStatus===0}}">
         <button class="weui-btn" type="primary" bindtap="endBid">结束竞标</button>
         <button class="weui-btn" type="primary" bindtap="cancelPublish">取消发布</button>
       </block>
       <block wx:else>
         <button class="weui-btn" disabled>竞标结束</button>
+        <button class="weui-btn" type="primary" bindtap="viewProgress">项目进度</button>
       </block>
-      <button wx:if="{{!isSelected}}" class="weui-btn" type="primary" bindtap="toSelectBidder">确定竞标人</button>
-      <button wx:else class="weui-btn" disabled>已确定竞标人</button>
+      <button wx:if="{{projectStatus===1}}" class="weui-btn" type="primary" bindtap="toSelectBidder">确定竞标人</button>
+      <button wx:elif="{{projectStatus>1}}" class="weui-btn" disabled>已确定竞标人</button>
     </block>
     <block wx:elif="{{accountIdentity==='1'}}">
-      <block wx:if="{{projectStatus===0&&!isSelected}}">
+      <block wx:if="{{projectStatus===0}}">
         <button wx:if="{{!isBider}}" class="weui-btn" type="primary" bindtap="bid">我要竞标</button>
-        <button wx:else class="weui-btn" disabled>已竞标</button>
+        <block wx:else>
+          <view style="text-align: center;margin-bottom: 30rpx;">发包者微信号：{{weChatCode}}</view>
+          <button class="weui-btn" disabled>已竞标</button>
+        </block>
       </block>
       <block wx:else>
         <button class="weui-btn" disabled>竞标结束</button>
       </block>
-      <button wx:if="{{isSuccessBid}}" class="weui-btn" disabled>竞标成功</button>
-      <button wx:else class="weui-btn" disabled>竞标失败</button>
+      <block wx:if="{{projectStatus>=2}}">
+        <block wx:if="{{isSuccessBid}}">
+          <button class="weui-btn" disabled>竞标成功</button>
+          <button class="weui-btn" type="primary" bindtap="viewProgress">项目进度</button>
+        </block>
+        <block wx:else>
+          <button class="weui-btn" disabled>竞标失败</button>
+        </block>
+      </block>
     </block>
     <block wx:else>
       <button class="weui-btn" type="primary" bindtap="cancelPublish">删除项目</button>
+      <button class="weui-btn" type="primary" bindtap="viewProgress">项目进度</button>
     </block>
-    <button class="weui-btn" type="primary" bindtap="viewProgress">项目进度</button>
   </view>
 </view>

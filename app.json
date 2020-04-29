@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/progress/progress",
     "pages/index/index",
+    "pages/progress/progress",
     "pages/admin-page/admin-page",
     "pages/user-info/user-info",
     "pages/modify-info/modify-info",
@@ -14,7 +14,8 @@
     "pages/my-projects/my-projects",
     "pages/admin-info/admin-info",
     "pages/admin-search/admin-search",
-    "pages/bidders/bidders"
+    "pages/bidders/bidders",
+    "pages/terms/terms"
   ],
   "window": {
     "backgroundTextStyle": "light",

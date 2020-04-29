@@ -52,11 +52,11 @@ Page({
             wx.setStorageSync('userInfo', JSON.parse(res.data))
             const accountIdentity = wx.getStorageSync('accountIdentity')
             if (accountIdentity === '0') {
-              wx.redirectTo({
+              wx.reLaunch({
                 url: '../publisher-info/publisher-info',
               })
             } else {
-              wx.redirectTo({
+              wx.reLaunch({
                 url: '../receiver-info/receiver-info',
               })
             }
@@ -77,16 +77,21 @@ Page({
             wx.setStorageSync('userInfo', res.data)
             const accountIdentity = wx.getStorageSync('accountIdentity')
             if (accountIdentity === '0') {
-              wx.navigateTo({
+              wx.reLaunch({
                 url: '../publisher-info/publisher-info',
               })
             } else {
-              wx.navigateTo({
+              wx.reLaunch({
                 url: '../receiver-info/receiver-info',
               })
             }
           },
-          fail: res => {}
+          fail: res => {
+            wx.showToast({
+              title: '修改失败',
+              icon: 'none'
+            })
+          }
         })
       }
     })
@@ -98,54 +103,5 @@ Page({
     this.setData({
       uplaodFile: this.uplaodFile.bind(this)
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
   }
 })

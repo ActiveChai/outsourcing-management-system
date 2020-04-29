@@ -1,26 +1,49 @@
 <!--pages/progress/progress.wxml-->
 <view>
-  <block wx:for="{{progress}}">
-    <view class="progress">
-      ——
-      <view>时间</view>
-      <view>进度</view>
-      <view>人</view>
-    </view>
-  </block>
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
   <view class="weui-btn-area">
     <block wx:if="{{accountIdentity==='1'}}">
-      <button wx:if="{{projectStatus===3}}" class="weui-btn" type="primary" bindtap="viewProgress">开始开发</button>
-      <button wx:elif="{{projectStatus===4}}" class="weui-btn" type="primary" bindtap="viewProgress">开发完成</button>
-      <button wx:elif="{{projectStatus===5}}" class="weui-btn" disabled>开发已完成，待验收</button>
+      <button wx:if="{{projectStatus===2}}" class="weui-btn" type="primary" bindtap="startDev">开始开发</button>
+      <button wx:elif="{{projectStatus===3}}" class="weui-btn" type="primary" bindtap="endDev">开发完成</button>
+      <button wx:elif="{{projectStatus===4}}" class="weui-btn" disabled>待验收</button>
     </block>
     <block wx:elif="{{accountIdentity==='0'}}">
-      <button wx:if="{{projectStatus===5}}" class="weui-btn" type="primary" bindtap="viewProgress">验收通过</button>
+      <button wx:if="{{projectStatus===4}}" class="weui-btn" type="primary" bindtap="acceptProject">验收通过</button>
     </block>
     <block wx:if="{{accountIdentity!=='2'}}">
-      <button wx:if="{{projectStatus===6}}" class="weui-btn" type="primary" bindtap="viewProgress">评价</button>
-      <button wx:elif="{{projectStatus===7}}" class="weui-btn" disabled>已评价</button>
+      <button wx:if="{{projectStatus>=5}}" class="weui-btn" type="primary" bindtap="evaluate">评价</button>
     </block>
-    <button wx:if="{{projectStatus===6}}" class="weui-btn" disabled>项目流程已结束</button>
+    <button wx:if="{{projectStatus===5}}" class="weui-btn" disabled>项目已结束</button>
   </view>
+
+  <view style="margin-top: 80rpx;">
+    <view wx:if="{{evaluationList.length}}" class="weui-cells__title">评价</view>
+    <block wx:for="{{evaluationList}}">
+      <view class="progress">
+        <view style="width: 92%">{{item.evaluation}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view style="margin-top: 30rpx;">
+    <view class="weui-cells__title">最新进度</view>
+    <block wx:for="{{progress}}">
+      <view class="progress">
+        <view style="">{{item.time}}</view>
+        <view style="display: inline-block;margin-right: 24rpx;">操作：{{item.status}}</view>
+        <view style="display: inline-block;">操作人：{{item.operator}}</view>
+      </view>
+    </block>
+  </view>
+
+  <mp-dialog title="评价" show="{{evaluateShow}}" bindbuttontap="evaluateButton" buttons="{{buttons}}">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea bindinput="formInputChange" class="weui-textarea" placeholder="请输入评价" style="height: 6em" />
+        </view>
+      </view>
+    </view>
+  </mp-dialog>
 </view>
