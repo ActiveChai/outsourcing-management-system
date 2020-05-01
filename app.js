@@ -42,6 +42,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    domain: 'http://192.168.1.106:3000'
+    domain: 'https://api.wechat.activechai.cn'
   }
 })

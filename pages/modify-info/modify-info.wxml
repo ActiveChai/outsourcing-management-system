@@ -5,7 +5,7 @@
     <view class="weui-cells__title">修改头像</view>
     <mp-cells>
       <mp-cell>
-        <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" upload="{{uplaodFile}}"></mp-uploader>
+        <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" upload="{{uplaodFile}}" max-size="{{1024*1024}}"></mp-uploader>
       </mp-cell>
     </mp-cells>
   </view>

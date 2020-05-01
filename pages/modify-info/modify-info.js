@@ -24,6 +24,10 @@ Page({
   },
   uploadError(e) {
     console.log('upload error', e.detail)
+    wx.showToast({
+      title: '图片不能大于1M',
+      icon: 'none'
+    })
   },
   uploadSuccess(e) {
     console.log('upload success', e.detail)
