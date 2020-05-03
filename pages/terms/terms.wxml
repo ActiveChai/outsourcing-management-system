@@ -1,4 +1,10 @@
 <!--pages/terms/terms.wxml-->
-<view>
-  相关条款
+<view class="weui-cells__title">相关条款</view>
+<view style="padding: 0 24rpx;">
+  <text>
+  1.本程序仅作为学习交流用途。 
+  2.开发者只维护程序的正常工作，提供网络服务。 
+  3.用户在使用过程中产生的任何问题，开发者概不负责。
+  4.开发者拥有最终解释权。
+  </text>
 </view>
