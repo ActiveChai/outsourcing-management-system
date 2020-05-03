@@ -128,7 +128,7 @@ Page({
             category: this.data.categories[this.data.categoryIndex],
             publishTime,
             thirdSession,
-            due: +new Date(this.data.dueString)
+            due: +new Date(this.data.dueString.replace(/\-/g, '/'))
           },
           success: res => {
             wx.showToast({
